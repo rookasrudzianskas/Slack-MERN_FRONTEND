@@ -32,10 +32,10 @@ const Sidebar = () => {
         <div className='sidebar' >
             <div className="sidebar__header">
                 <div className="sidebar__info">
-                    <h2>Clecer Programmer</h2>
+                    <h2>ByRookas Programmer</h2>
                     <h3>
                         <FiberManualRecordIcon />
-                        Rafeh Qazi
+                        Rokas Rudzianskas
                     </h3>
                 </div>
                 <CreateIcon />

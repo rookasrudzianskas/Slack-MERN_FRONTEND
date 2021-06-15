@@ -29,8 +29,8 @@ const Login = () => {
                     alt=""
                 />
 
-                <h1>Sign in to Clever Programmer</h1>
-                <p>cleverprogrammer.slack.com</p>
+                <h1>Sign in to Rokas Rudzianskas</h1>
+                <p>byrookas.slack.com</p>
                 <Button onClick={signIn}>Sign in with Google</Button>
             </div>
         </div >
