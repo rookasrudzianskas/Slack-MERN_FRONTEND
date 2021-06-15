@@ -21,6 +21,8 @@ const Chat = () => {
     useEffect(() => {
         if(roomId) {
             getConvo();
+
+            // real time stuff
         }
     }, [roomId])
 
