@@ -15,8 +15,8 @@ const Chat = () => {
 
     const getConvo = () => {
         axios.get(`/get/conversation?id=${roomId}`).then((res) => {
-            setRoomDetails(res.data[0].channelName);
-            setRoomMessages(res.data[0].conversation);
+            setRoomDetails(res.data[0]?.channelName);
+            setRoomMessages(res.data[0]?.conversation);
         })}
 
     useEffect(() => {

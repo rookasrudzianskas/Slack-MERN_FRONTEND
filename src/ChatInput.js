@@ -16,7 +16,7 @@ function ChatInput({ channelName, channelId }) {
         if (channelId) {
 
             // this creates the message
-            axios.post(`/new/messages/${channelId}`, {
+            axios.post(`/new/message/${channelId}`, {
                 message: input,
                 timestamp: Date.now(),
                 user: user.displayName,
