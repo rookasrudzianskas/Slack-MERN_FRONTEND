@@ -27,6 +27,8 @@ const Sidebar = () => {
 
     useEffect(() => {
         getChannelList();
+
+        // real time stuff here
     }, [])
 
     return (
