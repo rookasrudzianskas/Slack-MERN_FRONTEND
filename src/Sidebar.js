@@ -37,7 +37,7 @@ const Sidebar = () => {
 
         // real time stuff here
 
-        const channel = pusher.subscribe('conversation');
+        const channel = pusher.subscribe('channels');
         channel.bind('newChannel', function(data) {
             getChannelList();
         });
