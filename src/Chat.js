@@ -11,9 +11,10 @@ const Chat = () => {
     const { roomId } = useParams();
     const [roomDetails, setRoomDetails] = useState(null);
     const [roomMessages, setRoomMessages] = useState([]);
+    console.log("This is", roomDetails)
 
     const getConvo = () => {
-        axios.get(`/get.conversation?id=${roomId}`).then((res) => {
+        axios.get(`/get/conversation?id=${roomId}`).then((res) => {
             setRoomDetails(res.data[0].channelName);
             setRoomMessages(res.data[0].conversation);
         })}
@@ -31,7 +32,7 @@ const Chat = () => {
             <div className="chat__header">
                 <div className="chat__headerLeft">
                     <h4 className="chat__channelName">
-                        <strong> #{roomDetails?.name} </strong>
+                        <strong> #{roomDetails} </strong>
                         {/* <strong>#general</strong> */}
                         <StarBorderOutlined />
                     </h4>
@@ -53,7 +54,7 @@ const Chat = () => {
                     />
                 ))}
             </div>
-            <ChatInput channelName={roomDetails?.name} channelId={roomId} />
+            <ChatInput channelName={roomDetails} channelId={roomId} />
         </div>
     )
 }
