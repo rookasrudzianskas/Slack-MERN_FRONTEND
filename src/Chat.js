@@ -5,26 +5,23 @@ import { InfoOutlined, StarBorderOutlined } from '@material-ui/icons';
 import db from './firebase'
 import Message from './Message'
 import ChatInput from './ChatInput';
+import axios from "./axios";
 
 const Chat = () => {
     const { roomId } = useParams();
     const [roomDetails, setRoomDetails] = useState(null);
     const [roomMessages, setRoomMessages] = useState([]);
 
-    useEffect(() => {
-        if (roomId) {
-            db.collection("rooms")
-                .doc(roomId)
-                .onSnapshot((snapshot) => setRoomDetails(snapshot.data()));
-        }
+    const getConvo = () => {
+        axios.get(`/get.conversation?id=${roomId}`).then((res) => {
+            setRoomDetails(res.data[0].channelName);
+            setRoomMessages(res.data[0].conversation);
+        })}
 
-        db.collection("rooms")
-            .doc(roomId)
-            .collection("messages")
-            .orderBy("timestamp", "asc")
-            .onSnapshot((snapshot) =>
-                setRoomMessages(snapshot.docs.map((doc) => doc.data()))
-            );
+    useEffect(() => {
+        if(roomId) {
+            getConvo();
+        }
     }, [roomId])
 
     return (
@@ -59,4 +56,4 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default Chat;
