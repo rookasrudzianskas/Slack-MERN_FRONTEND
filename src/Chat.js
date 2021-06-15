@@ -6,6 +6,11 @@ import db from './firebase'
 import Message from './Message'
 import ChatInput from './ChatInput';
 import axios from "./axios";
+import Pusher from "pusher-js";
+
+const pusher = new Pusher('7fee001524c20788c95d', {
+    cluster: 'eu'
+});
 
 const Chat = () => {
     const { roomId } = useParams();
@@ -22,8 +27,10 @@ const Chat = () => {
     useEffect(() => {
         if(roomId) {
             getConvo();
-
-            // real time stuff
+            const channel = pusher.subscribe('conversation');
+            channel.bind('newMessage', function(data) {
+               getConvo();
+            });
         }
     }, [roomId])
 

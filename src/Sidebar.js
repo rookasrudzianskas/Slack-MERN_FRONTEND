@@ -15,6 +15,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 import axios from "./axios";
 import {useStateValue} from "./StateProvider";
+import Pusher from "pusher-js";
+
+const pusher = new Pusher('7fee001524c20788c95d', {
+    cluster: 'eu'
+});
 
 const Sidebar = () => {
     const [channels, setChannels] = useState([]);
@@ -31,6 +36,11 @@ const Sidebar = () => {
         getChannelList();
 
         // real time stuff here
+
+        const channel = pusher.subscribe('conversation');
+        channel.bind('newChannel', function(data) {
+            getChannelList();
+        });
     }, [])
 
     return (
